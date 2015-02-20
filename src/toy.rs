@@ -72,7 +72,7 @@ fn nameservers_int() -> Result<Vec<IpAddr>, ()> {
     Ok(res)
 }
 
-/// Retreives a list of nameservers from the OS.
+/// Retrieves a list of nameservers from the OS.
 pub fn nameservers() -> Vec<IpAddr> {
     match nameservers_int() {
         Ok(v) => v,

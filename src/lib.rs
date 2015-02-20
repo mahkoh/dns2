@@ -54,18 +54,30 @@ const ALL:  u16 = 255;
 /// A DNS packet.
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub struct Packet {
+    /// ID of the packet.
     pub id:                  i16,
+    /// Set if this is a query.
     pub is_query:            bool,
+    /// Kind of the query.
     pub kind:                QueryKind,
-    pub is_authorative:      bool,
+    /// Set if the answer is authoritative.
+    pub is_authoritative:    bool,
+    /// Set if the packet has been truncated.
     pub truncated:           bool,
+    /// Set if recursion is desired for this query.
     pub recursion_desired:   bool,
+    /// Set if recursion is available.
     pub recursion_available: bool,
+    /// Response code.
     pub response_code:       ResponseCode,
 
+    /// Questions.
     pub question:   Vec<Question>,
+    /// Answers.
     pub answer:     Vec<Record>,
+    /// Pointers to authorities.
     pub authority:  Vec<Record>,
+    /// Additional information.
     pub additional: Vec<Record>,
 }
 
@@ -109,7 +121,7 @@ impl Packet {
             id:                  id,
             is_query:            true,
             kind:                QueryKind::Standard,
-            is_authorative:      false,
+            is_authoritative:    false,
             truncated:           false,
             recursion_desired:   true,
             recursion_available: false,

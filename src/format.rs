@@ -9,7 +9,7 @@ pub fn packet(dst: &mut &mut [u8], p: &Packet) -> Result<(), FormatError> {
     let mut flags1 = 0;
     flags1 |= (!p.is_query as u8) << 7;
     flags1 |= (p.kind as u8) << 3;
-    flags1 |= (p.is_authorative as u8) << 2;
+    flags1 |= (p.is_authoritative as u8) << 2;
     flags1 |= (p.truncated as u8) << 1;
     flags1 |= p.recursion_desired as u8;
     let _ = dst.write_u8(flags1).ok();

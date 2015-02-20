@@ -23,7 +23,7 @@ pub fn packet(src: &mut &[u8]) -> Result<Packet, ()> {
     let is_query = flags & 0b1000_0000_0000_0000 == 0;
     let kind_ = (flags & 0b0111_1000_0000_0000) >> 11;
     let kind = trycvt!(kind(kind_));
-    let is_authorative = flags & 0b0000_0100_0000_0000 != 0;
+    let is_authoritative = flags & 0b0000_0100_0000_0000 != 0;
     let truncated = flags & 0b0000_0010_0000_0000 != 0;
     let recursion_desired = flags & 0b0000_0001_0000_0000 != 0;
     let recursion_available = flags & 0b0000_0000_1000_0000 != 0;
@@ -62,7 +62,7 @@ pub fn packet(src: &mut &[u8]) -> Result<Packet, ()> {
         id:                  id,
         is_query:            is_query,
         kind:                kind,
-        is_authorative:      is_authorative,
+        is_authoritative:    is_authoritative,
         truncated:           truncated,
         recursion_desired:   recursion_desired,
         recursion_available: recursion_available,
